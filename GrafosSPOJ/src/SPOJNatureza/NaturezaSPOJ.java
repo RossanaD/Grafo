@@ -10,8 +10,7 @@ public class NaturezaSPOJ {
 		Grafo<String> grafo = new Grafo<String>();
 		
 		
-		int qtdAnimais, qtdRelacoes, count = 0;
-		String sair = "N";
+		int qtdAnimais, qtdRelacoes;
 		System.out.println("Quantidade de animais");
 		qtdAnimais = teclado.nextInt();
 		System.out.println("Quantidade de relações");
@@ -33,7 +32,10 @@ public class NaturezaSPOJ {
 			System.out.println("Quantidade de relações");
 			qtdRelacoes = teclado.nextInt();	
 		}
-		System.out.println(grafo.toString());
+		BuscaProfundidade<String> busca = new BuscaProfundidade<>(grafo.getVertice("herb"));
+		busca.DFS(grafo);
+		System.out.println(busca.toString());
+		teclado.close();
 	}
 
 }
