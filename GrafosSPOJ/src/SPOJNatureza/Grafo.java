@@ -7,8 +7,6 @@ public class Grafo<T> {
 	private ArrayList<Vertice<T>> vertices;
 	private ArrayList<Aresta<T>> arestas;
 	
-	private int tempo;
-	
 	public Grafo(){
         this.vertices = new ArrayList<Vertice<T>>();
         this.arestas = new ArrayList<Aresta<T>>();
@@ -37,14 +35,6 @@ public class Grafo<T> {
             }
         }
         return vertice;
-    }
-    
-    public String toString() {
-    	String str = "";
-    	for (Aresta<T> aresta : arestas) {
-    		str += aresta.getInicio()+"------"+aresta.getFim()+"\n";
-		} 
-    	return str;
     }
     
     public ArrayList<Vertice<T>> getAllVertice(){
