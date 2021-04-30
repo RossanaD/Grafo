@@ -1,14 +1,19 @@
+//Rossana Ariadna Schumann Dullius
 package SPOJNatureza;
 
+import java.util.Stack;
 
 public class BuscaProfundidade<T> {
 	
 	private int tempo;
-	private Vertice<T> inicio;
+	private Stack<Vertice<T>> pilha;
+	private int count;
+	private int maior = 0;
 	
-	public BuscaProfundidade(Vertice<T> ini){
+	public BuscaProfundidade(){
 		tempo = 0;
-		inicio = ini;
+		pilha = new Stack<>();
+		count = 0;
 	}
 	
 	public void DFS(Grafo<T> graf) {
@@ -16,23 +21,24 @@ public class BuscaProfundidade<T> {
     		vertice.setCor(0);
     	}
     	for(Vertice<T> v : graf.getAllVertice()) {
-    		if(v.getCor() == 0) {
-    			if(v.getDado() == inicio.getDado()) {
-    				DFSVisit(v);
-    			}   			
-    		}
+    			DFSVisit(v);   			
     	}
     }
     public void DFSVisit(Vertice<T> u) {
+    	pilha.push(u);
+    	count++;
     	u.setCor(1);
     	tempo = tempo+1;
     	for(int i=0;i<u.getArestasSaida().size();i++) {
     		Vertice<T> proximo = u.getArestasSaida().get(i).getFim();
-    		if(proximo.getCor() == 0) {
+    			pilha.push(proximo);
     			DFSVisit(proximo);
-    		}
     	}
-    	
+    	if(count > maior) {
+    		maior = count;
+    	}
+    	pilha.pop();
+    	count--;
     }
     
     public int getTempo() {
@@ -40,6 +46,6 @@ public class BuscaProfundidade<T> {
     }
     
     public String toString() {
-    	return "Relações: "+tempo;
+    	return "Maior cadeia alimentar: "+maior;
     }
 }

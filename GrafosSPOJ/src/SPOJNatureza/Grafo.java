@@ -41,4 +41,9 @@ public class Grafo<T> {
     public ArrayList<Vertice<T>> getAllVertice(){
     	return vertices;
     }
+    
+    public void limpaArestaVertices() {
+    	arestas.clear();
+    	vertices.clear();
+    }
 }
